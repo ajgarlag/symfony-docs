@@ -157,9 +157,9 @@ options:
 * ``roles`` If the user does not have the given role, then access is denied
   (internally, an :class:`Symfony\\Component\\Security\\Core\\Exception\\AccessDeniedException`
   is thrown). If this value is an array of multiple roles, the user must have
-  at least one of them (when using the default ``affirmative`` strategy in the
-  :ref:`Access Decision Manager <components-security-access-decision-manager>`)
-  or all of them when using the ``unanimous`` strategy;
+  * at least one of them when using the default ``affirmative`` strategy
+  * all of them when using the ``unanimous`` strategy
+in the :ref:`Access Decision Manager <components-security-access-decision-manager>`.
 
 * ``allow_if`` If the expression returns false, then access is denied;
 
