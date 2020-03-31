@@ -44,7 +44,7 @@ Take the following ``access_control`` entries as an example:
                 - { path: '^/admin', roles: ROLE_USER_PORT, ip: 127.0.0.1, port: 8080 }
                 - { path: '^/admin', roles: ROLE_USER_HOST, host: symfony\.com$ }
                 - { path: '^/admin', roles: ROLE_USER_METHOD, methods: [POST, PUT] }
-                # when defining multiple roles, it could be like an OR or AND condition depending on the 'affirmative' or 'unanimous' strategy used
+                # when defining multiple roles, the behavior depends on the strategy used in Access Decission Manager
                 - { path: '^/admin', roles: [ROLE_MANAGER, ROLE_ADMIN] }
 
     .. code-block:: xml
@@ -63,7 +63,7 @@ Take the following ``access_control`` entries as an example:
                 <rule path="^/admin" role="ROLE_USER_PORT" ip="127.0.0.1" port="8080"/>
                 <rule path="^/admin" role="ROLE_USER_HOST" host="symfony\.com$"/>
                 <rule path="^/admin" role="ROLE_USER_METHOD" methods="POST, PUT"/>
-                <!-- when defining multiple roles, it could be like an OR or AND condition depending on the 'affirmative' or 'unanimous' strategy used -->
+                <!-- when defining multiple roles, the behavior depends on the strategy used in Access Decission Manager -->
                 <rule path="^/admin" roles="ROLE_ADMIN, ROLE_MANAGER"/>
             </config>
         </srv:container>
@@ -97,7 +97,7 @@ Take the following ``access_control`` entries as an example:
                 ],
                 [
                     'path' => '^/admin',
-                    // when defining multiple roles, it could be like an OR or AND condition depending on the 'affirmative' or 'unanimous' strategy used
+                    // when defining multiple roles, the behavior depends on the strategy used in Access Decission Manager
                     'roles' => ['ROLE_MANAGER', 'ROLE_ADMIN'],
                 ],
             ],
@@ -159,6 +159,7 @@ options:
   is thrown). If this value is an array of multiple roles, the user must have:
   
   * at least one of them when using the default ``affirmative`` strategy.
+  * more granted than denied roles when using the ``consensus`` strategy.
   * all of them when using the ``unanimous`` strategy.
   
   For more details about different strategies, see :ref:`Access Decision Manager <components-security-access-decision-manager>`.
